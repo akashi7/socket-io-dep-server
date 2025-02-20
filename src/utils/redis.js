@@ -33,7 +33,7 @@ const upsertTotalEnergy = async (data) => {
     gridOut,
     batteryCharged,
     batteryDischarged,
-    port,
+    mqttTopicPrefix,
   } = data
 
   try {
@@ -48,7 +48,7 @@ const upsertTotalEnergy = async (data) => {
         gridOut,
         batteryCharged,
         batteryDischarged,
-        port,
+        mqttTopicPrefix,
       },
       create: {
         date: normalizedDate,
@@ -63,7 +63,7 @@ const upsertTotalEnergy = async (data) => {
         gridOut,
         batteryCharged,
         batteryDischarged,
-        port,
+        mqttTopicPrefix,
       },
     })
   } catch (error) {
@@ -134,6 +134,7 @@ export const getMeanValues = async () => {
             existingGridOut,
             existingBatteryCharged,
             existingBatteryDischarged,
+            existingMqttTopicPrefix,
           ] = concatenatedValues.split(',')
 
           const fullDate = dateUserKey.split('-').slice(0, 3).join('-')
@@ -147,6 +148,7 @@ export const getMeanValues = async () => {
             gridOut: existingGridOut,
             batteryCharged: existingBatteryCharged,
             batteryDischarged: existingBatteryDischarged,
+            mqttTopicPrefix: existingMqttTopicPrefix,
           })
         }
       } catch (error) {
